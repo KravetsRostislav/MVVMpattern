@@ -18,6 +18,7 @@ namespace WpfApp1.DataService
         {
             string json = JsonConvert.SerializeObject(data, Formatting.Indented);
             File.WriteAllText(path, json);
+
         }
         public ObservableCollection<Student> Load()
         {
@@ -26,8 +27,8 @@ namespace WpfApp1.DataService
             {
                 students = new ObservableCollection<Student>();
             }
-            string json = File.ReadAllText(path);
-            return students = JsonConvert.DeserializeObject<ObservableCollection<Student>>(json);
+            //   string json = File.ReadAllText(path);
+            return students = JsonConvert.DeserializeObject<ObservableCollection<Student>>(File.ReadAllText(path));
         }
     }
 }

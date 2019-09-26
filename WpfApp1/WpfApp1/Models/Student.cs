@@ -12,12 +12,11 @@ namespace WpfApp1.Models
     [CollectionDataContract]
     public class Student : INotifyPropertyChanged
     {
-        string name;
-        string lastname;
-        int year;
-        string group;
+       public string name;
+       public string lastname;
+       public int year;
+        public string group;
 
-        [DataMember]
         public string Name
         {
             get => name;
@@ -27,7 +26,7 @@ namespace WpfApp1.Models
                 Notify();
             }
         }
-        [DataMember]
+
         public string Lastname
         {
             get => lastname;
@@ -37,7 +36,7 @@ namespace WpfApp1.Models
                 Notify();
             }
         }
-        [DataMember]
+
         public int Year
         {
             get => year;
@@ -47,7 +46,7 @@ namespace WpfApp1.Models
                 Notify();
             }
         }
-        [DataMember]
+
         public string Group
         {
             get => group;

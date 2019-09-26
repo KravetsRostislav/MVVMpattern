@@ -17,7 +17,7 @@ namespace WpfApp1.ViewModels
         [JsonProperty("Students")]
         public ObservableCollection<Student> Students { get; set; } = new ObservableCollection<Student>();
         public Student SelectedStudent { get; set; }
-        private JsonDataService json = new JsonDataService();
+        public JsonDataService Json { get; set; } = new JsonDataService();
         #endregion
 
         public MainViewModel()
@@ -32,11 +32,11 @@ namespace WpfApp1.ViewModels
             });
             SaveJson = new RelayCommand(x =>
             {
-                json.Save(Students);
+                Json.Save(Students);
             });
             LoadJson = new RelayCommand(x =>
             {
-                ReturnLoad();
+                Json.Load();
             });
         }
 
@@ -55,10 +55,6 @@ namespace WpfApp1.ViewModels
         public void RemoveSelected()
         {
             Students.Remove(SelectedStudent);
-        }
-        public void ReturnLoad()
-        {
-            Students = json.Load();
         }
         #endregion
     }
