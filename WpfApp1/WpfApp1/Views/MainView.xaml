@@ -67,15 +67,15 @@ Title="MainView" Height="450" Width="800">
                         </Expander>
                     </StackPanel>
                 </Expander>
-                <Label>Lastname:</Label>
-                <TextBox Text="{Binding SelectedStudent.Lastname}"></TextBox>
-                <Label>Name:</Label>
-                <TextBox Text="{Binding SelectedStudent.Name}"></TextBox>
-                <Label>Year:</Label>
-                <TextBox Text="{Binding SelectedStudent.Year}"></TextBox>
-                <Label>Group:</Label>
-                <TextBox Text="{Binding SelectedStudent.Group}"></TextBox>
-                <Button Command="{Binding SaveJson}">Save</Button>
+                <Label>Lastname</Label>
+                <TextBox Text="{Binding ElementName=StudentList,Path=SelectedItem.Lastname,  UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                <Label>Name</Label>
+                <TextBox Text="{Binding ElementName=StudentList,Path=SelectedItem.Name , UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                <Label>Year</Label>
+                <TextBox Text="{Binding ElementName=StudentList,Path=SelectedItem.Year , UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                <Label>Group</Label>
+                <TextBox Text="{Binding ElementName=StudentList,Path=SelectedItem.Group , UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                <Button Command="{Binding SaveJson}" Click="Button_Click_1">Save</Button>
                 <Button Command="{Binding LoadJson}">Load</Button>
             </StackPanel>
         </Grid>
