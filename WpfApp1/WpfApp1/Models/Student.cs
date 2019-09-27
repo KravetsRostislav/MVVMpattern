@@ -12,9 +12,9 @@ namespace WpfApp1.Models
     [CollectionDataContract]
     public class Student : INotifyPropertyChanged
     {
-       public string name;
-       public string lastname;
-       public int year;
+        public string name;
+        public string lastname;
+        public int year;
         public string group;
 
         public string Name

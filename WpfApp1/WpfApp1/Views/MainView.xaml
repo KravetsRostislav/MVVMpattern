@@ -76,7 +76,7 @@ Title="MainView" Height="450" Width="800">
                 <Label>Group</Label>
                 <TextBox Text="{Binding ElementName=StudentList,Path=SelectedItem.Group , UpdateSourceTrigger=PropertyChanged}"></TextBox>
                 <Button Command="{Binding SaveJson}">Save</Button>
-                <Button Command="{Binding LoadJson , UpdateSourceTrigger=LostFocus}">Load</Button>
+                <Button Command="{Binding LoadJson}">Load</Button>
             </StackPanel>
         </Grid>
     </Grid>

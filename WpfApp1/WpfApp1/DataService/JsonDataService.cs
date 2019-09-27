@@ -24,11 +24,9 @@ namespace WpfApp1.DataService
         {
             ObservableCollection<Student> students;
             if (!File.Exists(path))
-            {
                 students = new ObservableCollection<Student>();
-            }
-            //   string json = File.ReadAllText(path);
-            return students = JsonConvert.DeserializeObject<ObservableCollection<Student>>(File.ReadAllText(path));
+            string json = File.ReadAllText(path);
+            return students = JsonConvert.DeserializeObject<ObservableCollection<Student>>(json);
         }
     }
 }

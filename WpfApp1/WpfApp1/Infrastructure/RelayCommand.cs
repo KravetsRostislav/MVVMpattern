@@ -9,10 +9,10 @@ namespace WpfApp1.Models
 {
     class RelayCommand : ICommand
     {
-        readonly Action<object> action;
-        readonly Predicate<object> predicate;
+        public Action<object> action;
+        public Func<object,bool> predicate;
 
-        public RelayCommand(Action<object> action, Predicate<object> predicate = null)
+        public RelayCommand(Action<object> action, Func<object, bool> predicate = null)
         {
             this.action = action;
             this.predicate = predicate;
@@ -32,12 +32,12 @@ namespace WpfApp1.Models
 
         public bool CanExecute(object parameter)
         {
-            return predicate == null ? true : predicate(parameter);
+             return predicate?.Invoke(parameter) ?? true;
         }
 
         public void Execute(object parameter)
         {
-            action(parameter);
+            action?.Invoke(parameter);
         }
     }
 }

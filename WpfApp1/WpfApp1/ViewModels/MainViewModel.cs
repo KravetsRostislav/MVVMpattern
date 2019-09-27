@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,8 +12,9 @@ using WpfApp1.Models;
 
 namespace WpfApp1.ViewModels
 {
-    class MainViewModel
+    class MainViewModel 
     {
+
         #region Properties
         [JsonProperty("Students")]
         public ObservableCollection<Student> Students { get; set; } = new ObservableCollection<Student>();
@@ -24,7 +26,7 @@ namespace WpfApp1.ViewModels
         {
             AddCommand = new RelayCommand(x =>
             {
-                AddToStudents(new Student { Name = "None", Lastname = "None", Year = 0, Group = "None" });
+                AddToStudents();
             });
             RemoveCommand = new RelayCommand(x =>
             {
@@ -36,7 +38,9 @@ namespace WpfApp1.ViewModels
             });
             LoadJson = new RelayCommand(x =>
             {
-                Json.Load();
+                var students = Json.Load();
+                InitStudents(students);
+               
             });
         }
 
@@ -45,17 +49,26 @@ namespace WpfApp1.ViewModels
         public ICommand RemoveCommand { get; set; }
         public ICommand SaveJson { get; set; }
         public ICommand LoadJson { get; set; }
+
         #endregion
 
         #region Methods
-        public void AddToStudents(Student student)
+        public void AddToStudents()
         {
+            var student = new Student { Name = "NULL", Lastname = "NULL", Year = 0, Group = "NULL" };
             Students.Add(student);
         }
         public void RemoveSelected()
         {
             Students.Remove(SelectedStudent);
         }
+        public void InitStudents(ObservableCollection<Student> students)
+        {
+            Students = students;
+        
+        }
         #endregion
+
+      
     }
 }
