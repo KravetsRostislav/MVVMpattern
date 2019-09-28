@@ -16,7 +16,6 @@ namespace WpfApp1.Models
         public string lastname;
         public int year;
         public string group;
-
         public string Name
         {
             get => name;

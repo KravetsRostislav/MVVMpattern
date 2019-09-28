@@ -10,7 +10,7 @@ using WpfApp1.Models;
 
 namespace WpfApp1.DataService
 {
-    class JsonDataService : IDataService<ObservableCollection<Student>>
+    class JsonDataService : IDataService<ObservableCollection<Student>> 
     {
         string path = "students.json";
 

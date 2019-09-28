@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -12,18 +13,31 @@ using WpfApp1.Models;
 
 namespace WpfApp1.ViewModels
 {
-    class MainViewModel 
+    class MainViewModel : INotifyPropertyChanged
     {
+        //[JsonProperty("Students")]
 
         #region Properties
-        [JsonProperty("Students")]
-        public ObservableCollection<Student> Students { get; set; } = new ObservableCollection<Student>();
+        private ObservableCollection<Student> student;
+        public ObservableCollection<Student> Students
+        {
+            get => student;
+            set
+            {
+                student = value;
+                Notify();
+            }
+        }
         public Student SelectedStudent { get; set; }
         public JsonDataService Json { get; set; } = new JsonDataService();
         #endregion
 
         public MainViewModel()
         {
+            if (Students == null)
+            {
+                Students = new ObservableCollection<Student>();
+            }
             AddCommand = new RelayCommand(x =>
             {
                 AddToStudents();
@@ -40,8 +54,10 @@ namespace WpfApp1.ViewModels
             {
                 var students = Json.Load();
                 InitStudents(students);
-               
+
             });
+
+
         }
 
         #region Commands 
@@ -49,6 +65,7 @@ namespace WpfApp1.ViewModels
         public ICommand RemoveCommand { get; set; }
         public ICommand SaveJson { get; set; }
         public ICommand LoadJson { get; set; }
+
 
         #endregion
 
@@ -64,11 +81,17 @@ namespace WpfApp1.ViewModels
         }
         public void InitStudents(ObservableCollection<Student> students)
         {
-            Students = students;
-        
+            Students = students; //
+            Notify();
         }
+        protected void Notify([CallerMemberName]string propertyname = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyname));
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
+
         #endregion
 
-      
+
     }
 }

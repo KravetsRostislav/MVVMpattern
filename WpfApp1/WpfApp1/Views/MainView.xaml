@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WpfApp1"
         xmlns:vm="clr-namespace:WpfApp1.ViewModels"
         mc:Ignorable="d"
-Title="MainView" Height="450" Width="800">
+Title="MainView" Height="300" Width="800">
     <Window.DataContext>
         <vm:MainViewModel></vm:MainViewModel>
     </Window.DataContext>
@@ -17,10 +17,10 @@ Title="MainView" Height="450" Width="800">
                 <ColumnDefinition Width="50*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <StackPanel>
-                <ListBox Height="375"
+                <ListBox Height="200"
                          ItemsSource="{Binding Students}"
                          SelectedItem="{Binding SelectedStudent}"
-                         Name ="StudentList">
+                         Name ="StudentList" SelectionChanged="StudentList_SelectionChanged">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
@@ -37,7 +37,7 @@ Title="MainView" Height="450" Width="800">
                         </ItemsPanelTemplate>
                     </ListBox.ItemsPanel>
                 </ListBox>
-                <Button Command="{Binding AddCommand}" >Add</Button>
+                <Button Command="{Binding AddCommand}" Content="Add" />
                 <Button Command="{Binding RemoveCommand}" CommandParameter="{Binding SelectedStudent}">Remove</Button>
             </StackPanel>
             <StackPanel Grid.Column="1">

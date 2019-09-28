@@ -25,5 +25,9 @@ namespace WpfApp1
             InitializeComponent();
         }
 
+        private void StudentList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
